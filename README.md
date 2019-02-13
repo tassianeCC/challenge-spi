@@ -25,4 +25,4 @@ No conjunto de dados existem 506 linhas com 13 variáveis de entrada e 1 variáv
 * Python
 * Flask
 * Vue
-*
+
