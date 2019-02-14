@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Desafio SPI</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+  <!-- Icons -->
+  <link href="vendor/nucleo/css/nucleo.css" rel="stylesheet">
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- Argon CSS -->
+  <link type="text/css" href="css/argon.min.css" rel="stylesheet">
+</head>
+<body>
+<div id="app">
+  <header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-default">
+      <div class="container">
+          <a class="navbar-brand" href="#">Desafio SPI</a>
+      </div>
+    </nav>
+  </header>
+
+<main>
+  <section class="section pb-0 section-components" style="padding-top: 1rem">
+    <div class="container mb-5">
+      <div class="mb-3">
+        <small class="text-uppercase font-weight-bold">Informe os dados</small>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-sm-6">
+          <div class="form-group">
+            <input v-model="crim" type="text" placeholder="CRIM - per capita crime rate by town" class="form-control form-control-alternative" />
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+          <div class="form-group">
+            <input v-model="zn" type="text" placeholder="ZN - proportion of residential land zoned for lots over 25,000 sq.ft." class="form-control form-control-alternative"/>
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+          <div class="form-group">
+            <input v-model="indus" type="text" placeholder="NDUS - proportion of non-retail business acres per town" class="form-control form-control-alternative" />
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+          <div class="form-group">
+            <input v-model="chars" type="text" placeholder="CHAS - Charles River dummy variable (= 1 if tract bounds river; 0 otherwise)" class="form-control form-control-alternative"/>
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+          <div class="form-group">
+            <input v-model="nox" type="text" placeholder="NOX - nitric oxides concentration (parts per 10 million)" class="form-control form-control-alternative" />
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+          <div class="form-group">
+            <input v-model="rm" type="text" placeholder="RM - average number of rooms per dwelling" class="form-control form-control-alternative"/>
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+          <div class="form-group">
+            <input v-model="age" type="text" placeholder="AGE - proportion of owner-occupied units built prior to 1940" class="form-control form-control-alternative" />
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+          <div class="form-group">
+            <input v-model="dis" type="text" placeholder="DIS - weighted distances to five Boston employment centres" class="form-control form-control-alternative"/>
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+          <div class="form-group">
+            <input v-model="rad" type="text" placeholder="RAD - index of accessibility to radial highways" class="form-control form-control-alternative" />
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+          <div class="form-group">
+            <input v-model="tax" type="text" placeholder="TAX - full-value property-tax rate per $10,000" class="form-control form-control-alternative"/>
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+          <div class="form-group">
+            <input v-model="ptratio" type="text" placeholder="PTRATIO - pupil-teacher ratio by town" class="form-control form-control-alternative" />
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+          <div class="form-group">
+            <input v-model="b" type="text" placeholder="B - 1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town" class="form-control form-control-alternative"/>
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+          <div class="form-group">
+            <input v-model="lstat" type="text" placeholder="LSTAT - %lower status of the population" class="form-control form-control-alternative" />
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <button v-on:click="predict()" type="submit" class="btn btn-default btn-round btn-block btn-lg">Descobrir Preço</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-secondary" style="padding-top: 2rem; padding-bottom: 1rem;">
+    <div class="container mb-5">
+      <div class="mb-4">
+        <small class="text-uppercase font-weight-bold">Comparação dos Algoritmos</small>
+      </div>
+      <div class="row row-grid align-items-center">
+        <div class="col-lg-12">
+          <div class="card bg-default shadow border-1">
+            <img src="img/grafico.png" class="card-img-top shadow">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section pb-0 section-components" style="padding-top: 2rem; margin-bottom: 2rem;">
+    <div class="container">
+      <div class="row justify-content-md-between">
+        <div class="col-md-12">
+          <div class="copyright" align="right">
+            &copy; 2019
+            <a href="#" target="_blank">Tassiane Barros</a>.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Preço Predito</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <b>Preço U$: </b>{{resultado}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+          </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+</div>
+
+  <!-- Core -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/popper/popper.min.js"></script>
+  <script src="vendor/bootstrap/bootstrap.min.js"></script>
+
+  <!-- Theme JS -->
+  <script src="js/argon.min.js"></script>
+
+  <!-- Vue e Axios-->
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <script type="text/javascript">
+
+    var app = new Vue({
+        el:"#app",
+        data:{
+          resultado : null,
+          crim : null,
+          zn : null,
+          indus : null,
+          chars : null,
+          nox : null,
+          rm : null,
+          age : null,
+          dis : null,
+          rad : null,
+          tax : null,
+          ptratio : null,
+          b : null,
+          lstat : null
+
+        },
+        methods:{
+            predict(){
+              axios.post('http://127.0.0.1:5000/api/predict', {
+                'crim': this.crim,
+            	  'zn' : this.zn,
+  	            'indus' : this.indus,
+    	          'chars': this.chars,
+    	          'nox' : this.nox,
+    	          'rm' : this.rm,
+    	          'age' : this.age,
+    	          'dis' : this.dis,
+    	          'rad' : this.rad,
+    	          'tax' : this.tax,
+    	          'ptratio' : this.ptratio,
+    	          'b' : this.b,
+    	          'lstat' : this.lstat
+              })
+              .then(response => {
+              	this.resultado = response.data['resultado'];
+              	$('#exampleModal').modal('show') 
+              })
+              .catch(e => {
+                console.log(e)
+              })
+            }
+          }
+        });
+
+    </script>
+
+
+  </body>
+</html>
