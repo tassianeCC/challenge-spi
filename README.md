@@ -2,7 +2,7 @@
 Challenge SPI
 
 # Definição do Problema
-É uma problema de regressão, no qual utilizaremos um conjunto de dados para predizer o preço de casas. Os dados pode ser obtidos no seguinte link : https://www.dropbox.com/s/mmzs3jdoxzwsdnz/housing.data?dl=0.
+É um problema de regressão, no qual utilizaremos um conjunto de dados para predizer o preço de casas. Os dados pode ser obtidos no seguinte link : https://www.dropbox.com/s/mmzs3jdoxzwsdnz/housing.data?dl=0.
 
 No conjunto de dados existem 506 linhas com 13 variáveis de entrada e 1 variável de saída. As variáveis são descritas abaixo:
 
