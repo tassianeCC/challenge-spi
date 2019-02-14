@@ -22,7 +22,10 @@ No conjunto de dados existem 506 linhas com 13 variáveis de entrada e 1 variáv
     14 - MEDV    Median value of owner-occupied homes in $1000's. medv variable is the target variable (label)
 
 #### Tecnologias utilizadas
-* Python
-* Flask
-* Vue
+* Flask (http://flask.pocoo.org/)
+* Vue (https://vuejs.org/)
+* Axios (https://br.vuejs.org/v2/cookbook/using-axios-to-consume-apis.html)
+* Scikit-learn (https://scikit-learn.org/stable/)
+* Argon (https://demos.creative-tim.com/vue-argon-design-system/#/)
+
 
